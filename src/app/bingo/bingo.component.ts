@@ -29,6 +29,7 @@ export class BingoComponent {
   }
 
   startBingo(): void {
+    this.receivedMessages = [];
     this.webSocketService.sendMessage(this.numberForm.get('number')?.value);
     this.message = '';
   }

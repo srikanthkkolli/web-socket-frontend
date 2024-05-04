@@ -1,23 +1,25 @@
-<div class="header">
-  <mat-toolbar>
-    <span>BINGO COUNTER</span>
-  </mat-toolbar>
-</div>
+<div class="complete">
+  <div class="header">
+    <mat-toolbar>
+      <span>BINGO COUNTER</span>
+    </mat-toolbar>
+  </div>
 
-<div class="form-container">
-  <form [formGroup]="numberForm">
-    <mat-form-field>
-      <mat-label>Enter a number</mat-label>
-      <input formControlName="number" matInput>
-      <mat-error *ngIf="numberForm.get('number')?.errors?.['required']">
-        Number is required.
-      </mat-error>
-      <mat-error *ngIf="numberForm.get('number')?.errors?.['pattern']">
-        Please enter a valid number.
-      </mat-error>
-    </mat-form-field>
-    <button (click)="startBingo()" [disabled]="!numberForm.valid" mat-raised-button>Submit</button>
+  <div class="form-container">
+    <form [formGroup]="numberForm">
+      <mat-form-field>
+        <mat-label>Enter a number</mat-label>
+        <input formControlName="number" matInput>
+        <mat-error *ngIf="numberForm.get('number')?.errors?.['required']">
+          Number is required.
+        </mat-error>
+        <mat-error *ngIf="numberForm.get('number')?.errors?.['pattern']">
+          Please enter a valid number.
+        </mat-error>
+      </mat-form-field>
+      <button (click)="startBingo()" [disabled]="!numberForm.valid" mat-raised-button>Submit</button>
 
-    <div *ngFor="let n of receivedMessages"><br>{{ n }}</div>
-  </form>
+      <div *ngFor="let n of receivedMessages"><br>{{ n }}</div>
+    </form>
+  </div>
 </div>
