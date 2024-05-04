@@ -18,6 +18,6 @@
     </mat-form-field>
     <button (click)="startBingo()" [disabled]="!numberForm.valid">Submit</button>
 
-    <div *ngFor="let n of receivedMessages">{{ n }}</div>
+    <div *ngFor="let n of receivedMessages"><br>{{ n }}</div>
   </form>
 </div>
