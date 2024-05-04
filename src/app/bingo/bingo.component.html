@@ -1,0 +1,23 @@
+<div class="header">
+  <mat-toolbar>
+    <span>BINGO COUNTER</span>
+  </mat-toolbar>
+</div>
+
+<div class="form-container">
+  <form [formGroup]="numberForm">
+    <mat-form-field>
+      <mat-label>Enter a number</mat-label>
+      <input formControlName="number" matInput>
+      <mat-error *ngIf="numberForm.get('number')?.errors?.['required']">
+        Number is required.
+      </mat-error>
+      <mat-error *ngIf="numberForm.get('number')?.errors?.['pattern']">
+        Please enter a valid number.
+      </mat-error>
+    </mat-form-field>
+    <button (click)="startBingo()" [disabled]="!numberForm.valid">Submit</button>
+
+    <div *ngFor="let n of receivedMessages">{{ n }}</div>
+  </form>
+</div>
