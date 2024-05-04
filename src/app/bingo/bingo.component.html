@@ -16,7 +16,7 @@
         Please enter a valid number.
       </mat-error>
     </mat-form-field>
-    <button (click)="startBingo()" [disabled]="!numberForm.valid">Submit</button>
+    <button (click)="startBingo()" [disabled]="!numberForm.valid" mat-raised-button>Submit</button>
 
     <div *ngFor="let n of receivedMessages"><br>{{ n }}</div>
   </form>
