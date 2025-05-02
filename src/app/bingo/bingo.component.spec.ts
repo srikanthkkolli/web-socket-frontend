@@ -1,3 +1,5 @@
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -11,7 +13,12 @@ describe('BingoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BingoComponent],
-      imports: [NoopAnimationsModule, MatToolbarModule],
+      imports: [
+        NoopAnimationsModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatInputModule
+      ],
     })
       .compileComponents();
 
