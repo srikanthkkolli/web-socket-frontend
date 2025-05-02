@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {WebSocketService} from "../services/web-socket.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -8,8 +8,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './bingo.component.html',
   styleUrl: './bingo.component.css'
 })
-export class BingoComponent {
-  message: string = '';
+export class BingoComponent implements OnDestroy {
+  message = '';
   receivedMessages: string[] = [];
   numberForm: FormGroup;
 
