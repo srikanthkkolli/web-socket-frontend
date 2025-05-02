@@ -8,6 +8,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    reporters: ['dots'],
     browsers: ['ChromeHeadless'],
     singleRun: true,
     autoWatch: false
