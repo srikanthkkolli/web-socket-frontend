@@ -40,7 +40,7 @@ export class WebSocketService {
       console.log('Sending message:', message);
       this.websocket.send(message);
     } else {
-      console.log('WebSocket is not open.. Queuing message:', message);
+      console.log('WebSocket is not open... Queuing message:', message);
       this.messageQueue.push(message);  // Queue the message to send when the socket opens
     }
   }
