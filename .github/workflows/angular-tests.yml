@@ -8,100 +8,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  checkout:
-    name: 📥 Initial Checkout
+  angular-checks:
+    name: ⚙️ Lint + Build + Test + Audit
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: 📥 Checkout Code
         uses: actions/checkout@v3
 
-  env-info:
-    name: 🔍 Environment Info
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Node & OS Details
-        run: |
-          node -v
-          npm -v
-          uname -a
-
-  workspace-check:
-    name: 📂 Workspace Listing
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: List files
-        run: ls -la
-
-  disk-usage:
-    name: 📊 Disk Usage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Check space
-        run: du -sh .
-
-  setup-node:
-    name: ⚙️ Setup Node.js
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Use Node.js 20
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-  install-deps:
-    name: 📦 Install Dependencies
-    runs-on: ubuntu-latest
-    needs: setup-node
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Install
-        run: |
-          npm install
-          npm install -g @angular/cli
+      - name: 📦 Install Dependencies
+        run: npm ci
 
-  lint:
-    name: 🎨 Lint
-    runs-on: ubuntu-latest
-    needs: install-deps
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Run ESLint
+      - name: 🎨 Run Lint
         run: npm run lint
 
-  build:
-    name: 🏗️ Build App
-    runs-on: ubuntu-latest
-    needs: install-deps
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Build Angular
+      - name: 🏗️ Build App
         run: npm run build --if-present
 
-  test:
-    name: 🧪 Test App
-    runs-on: ubuntu-latest
-    needs: install-deps
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Run Unit Tests
+      - name: 🧪 Run Unit Tests
         run: npm test -- --watch=false --browsers=ChromeHeadless
 
-  audit:
-    name: 🔐 Security Audit
-    runs-on: ubuntu-latest
-    needs: install-deps
-    steps:
-      - name: Run Audit
+      - name: 🔐 Security Audit
         run: npm audit --audit-level=high || true
