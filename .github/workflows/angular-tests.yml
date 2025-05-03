@@ -1,4 +1,4 @@
-name: Angular Tests
+name: Angular Checks
 
 on:
   push:
@@ -8,49 +8,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
-    name: 🧹 Lint
+  all-in-one:
+    name: 🧪 Lint + Build + Test + Audit
     runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm run lint
 
-  build:
-    name: 🏗️ Build
-    runs-on: self-hosted
-    needs: lint
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm run build --if-present
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
 
-  test:
-    name: 🧪 Test
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm test -- --watch=false --browsers=ChromeHeadless
 
-  security:
-    name: 🔐 Audit
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm audit --audit-level=high || true
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🧹 Lint
+        run: npm run lint
+
+      - name: 🏗️ Build
+        run: npm run build --if-present
+
+      - name: 🧪 Test
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - name: 🔐 Audit
+        run: npm audit --audit-level=high || true
