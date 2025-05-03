@@ -58,7 +58,7 @@ jobs:
     needs: setup-node
     steps:
       - name: Install
-        run: npm install
+        run: npm ci
 
   lint:
     name: 🎨 Lint
