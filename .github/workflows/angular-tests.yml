@@ -15,6 +15,40 @@ jobs:
       - name: 📥 Checkout Code
         uses: actions/checkout@v3
 
+      - name: 🔍 Environment Info
+        run: |
+          echo "::group::Environment Info"
+          node -v
+          npm -v
+          uname -a
+          echo "::endgroup::"
+
+      - name: 📂 Workspace Listing
+        run: |
+          echo "::group::Listing Workspace Files"
+          ls -la
+          echo "::endgroup::"
+
+      - name: 📊 Disk Usage
+        run: |
+          echo "::group::Checking Disk Usage"
+          du -sh .
+          echo "::endgroup::"
+
+      - name: ⏱️ Timing Check
+        run: |
+          echo "::group::Timing Benchmark"
+          date
+          sleep 1
+          date
+          echo "::endgroup::"
+
+      - name: 📜 Node Version Confirmation
+        run: |
+          echo "::group::Node Environment Check"
+          node -p "process.versions"
+          echo "::endgroup::"
+
       - name: ⚙️ Setup Node.js 20
         uses: actions/setup-node@v3
         with:
@@ -32,12 +66,49 @@ jobs:
           npm run lint
           echo "::endgroup::"
 
+      - name: ✅ Job Complete
+        run: echo "🎉 ${GITHUB_JOB} job completed successfully!"
+
   build:
     name: 🏗️ Angular Build
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v3
+
+      - name: 🔍 Environment Info
+        run: |
+          echo "::group::Environment Info"
+          node -v
+          npm -v
+          uname -a
+          echo "::endgroup::"
+
+      - name: 📂 Workspace Listing
+        run: |
+          echo "::group::Listing Workspace Files"
+          ls -la
+          echo "::endgroup::"
+
+      - name: 📊 Disk Usage
+        run: |
+          echo "::group::Checking Disk Usage"
+          du -sh .
+          echo "::endgroup::"
+
+      - name: ⏱️ Timing Check
+        run: |
+          echo "::group::Timing Benchmark"
+          date
+          sleep 1
+          date
+          echo "::endgroup::"
+
+      - name: 📜 Node Version Confirmation
+        run: |
+          echo "::group::Node Environment Check"
+          node -p "process.versions"
+          echo "::endgroup::"
 
       - name: ⚙️ Setup Node.js 20
         uses: actions/setup-node@v3
@@ -56,12 +127,49 @@ jobs:
           npm run build --if-present
           echo "::endgroup::"
 
+      - name: ✅ Job Complete
+        run: echo "🎉 ${GITHUB_JOB} job completed successfully!"
+
   test:
     name: 🧪 Run Tests
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v3
+
+      - name: 🔍 Environment Info
+        run: |
+          echo "::group::Environment Info"
+          node -v
+          npm -v
+          uname -a
+          echo "::endgroup::"
+
+      - name: 📂 Workspace Listing
+        run: |
+          echo "::group::Listing Workspace Files"
+          ls -la
+          echo "::endgroup::"
+
+      - name: 📊 Disk Usage
+        run: |
+          echo "::group::Checking Disk Usage"
+          du -sh .
+          echo "::endgroup::"
+
+      - name: ⏱️ Timing Check
+        run: |
+          echo "::group::Timing Benchmark"
+          date
+          sleep 1
+          date
+          echo "::endgroup::"
+
+      - name: 📜 Node Version Confirmation
+        run: |
+          echo "::group::Node Environment Check"
+          node -p "process.versions"
+          echo "::endgroup::"
 
       - name: ⚙️ Setup Node.js 20
         uses: actions/setup-node@v3
@@ -80,12 +188,49 @@ jobs:
           npm test -- --watch=false --browsers=ChromeHeadless
           echo "::endgroup::"
 
+      - name: ✅ Job Complete
+        run: echo "🎉 ${GITHUB_JOB} job completed successfully!"
+
   audit:
     name: 🔐 Security Audit
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v3
+
+      - name: 🔍 Environment Info
+        run: |
+          echo "::group::Environment Info"
+          node -v
+          npm -v
+          uname -a
+          echo "::endgroup::"
+
+      - name: 📂 Workspace Listing
+        run: |
+          echo "::group::Listing Workspace Files"
+          ls -la
+          echo "::endgroup::"
+
+      - name: 📊 Disk Usage
+        run: |
+          echo "::group::Checking Disk Usage"
+          du -sh .
+          echo "::endgroup::"
+
+      - name: ⏱️ Timing Check
+        run: |
+          echo "::group::Timing Benchmark"
+          date
+          sleep 1
+          date
+          echo "::endgroup::"
+
+      - name: 📜 Node Version Confirmation
+        run: |
+          echo "::group::Node Environment Check"
+          node -p "process.versions"
+          echo "::endgroup::"
 
       - name: ⚙️ Setup Node.js 20
         uses: actions/setup-node@v3
@@ -103,3 +248,6 @@ jobs:
           echo "::group::Running npm audit"
           npm audit --audit-level=high || true
           echo "::endgroup::"
+
+      - name: ✅ Job Complete
+        run: echo "🎉 ${GITHUB_JOB} job completed successfully!"
