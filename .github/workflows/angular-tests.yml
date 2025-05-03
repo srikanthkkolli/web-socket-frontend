@@ -9,7 +9,7 @@ on:
 
 jobs:
   all-in-one:
-    name: 🧪 Lint + Build + Test + Audit
+    name: PR-Workflow
     runs-on: self-hosted
 
     steps:
