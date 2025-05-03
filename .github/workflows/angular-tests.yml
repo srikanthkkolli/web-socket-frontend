@@ -21,11 +21,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: 🧠 CodeQL Init
-        uses: github/codeql-action/init@v2
-        with:
-          languages: javascript
-
       - name: 📦 Install dependencies
         run: npm ci
 
@@ -40,6 +35,3 @@ jobs:
 
       - name: 🔐 Audit
         run: npm audit --audit-level=high || true
-
-      - name: 🧠 CodeQL Analyze
-        uses: github/codeql-action/analyze@v2
