@@ -18,9 +18,8 @@ jobs:
   env-info:
     name: 🔍 Environment Info
     runs-on: ubuntu-latest
+    needs: checkout
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: Node & OS Details
         run: |
           node -v
@@ -30,27 +29,24 @@ jobs:
   workspace-check:
     name: 📂 Workspace Listing
     runs-on: ubuntu-latest
+    needs: checkout
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: List files
         run: ls -la
 
   disk-usage:
     name: 📊 Disk Usage
     runs-on: ubuntu-latest
+    needs: checkout
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: Check space
         run: du -sh .
 
   setup-node:
     name: ⚙️ Setup Node.js
     runs-on: ubuntu-latest
+    needs: checkout
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
@@ -61,8 +57,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup-node
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: Install
         run: npm install
 
