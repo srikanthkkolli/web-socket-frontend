@@ -48,7 +48,11 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npm test -- --watch=false --browsers=ChromeHeadless
+      - name: 📋 Run Unit Tests
+        run: |
+          echo "::group::Running Angular Tests"
+          npm test -- --watch=false --browsers=ChromeHeadless --source-map=false
+          echo "::endgroup::"
 
   audit:
     name: 🔐 Audit
